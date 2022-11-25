@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+
+        <div id="viewport">
+
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+
+                <div class="container-fluid">
+                    <!-- Contenido pantalla -->
+                    <h4 class="text-center">Información relacionada con la bitacora</h4>
+
+                    <div  th:if="${bitacoras != null and !bitacoras.empty}">
+                        <table class="table">
+                            <tr>
+                                <th>Id Bitacora</th>
+                                <th>Tipo</th>
+                                <th>Fecha y hora</th>
+                                <th>Informacion</th>
+                            </tr>                            
+                            <tr th:each="bitacora : ${bitacoras}">
+                                <td th:text="${bitacora.idRegistro}"></td>
+                                <th:block th:switch="${bitacora.tipoRegistro}"> 
+                                    <div th:case="'I'">
+                                        <td th:text="Insert">
+                                    </div>
+                                    <div th:case="'U'">
+                                        <td th:text="Update"></td>
+                                    </div>
+                                    <div th:case="'D'">
+                                        <td th:text="Delete"></td>
+                                    </div>
+                                </th:block>
+                                <td th:text="${bitacora.fechaRegistro}"></td>
+                                <td th:text="${bitacora.descripcionRegistro}"></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <!-- /.contenido pantalla -->
+                </div>
+            </div>
+            <!-- fincontent -->
+        </div>
+    </body>
+</html>
+

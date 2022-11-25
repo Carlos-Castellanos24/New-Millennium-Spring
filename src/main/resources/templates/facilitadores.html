@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Hola - MillenniumCalendar</title>
+
+        <!-- Estilos personalizados -->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <!-- header -->
+        <div class="barra">
+            <div class="contenedor clearfix">
+                <div class="logo">
+                    <a href="/index">
+                        <img src="../img/new-millenium-logo.png" alt="new-millenium-logo" />
+                    </a>
+                </div>
+                <nav class="navegacion-principal">
+                    <a href="/index">Calendario</a>
+                    <a href="/categorias">Categorías</a>
+                    <a href="/facilitadores">Facilitadores</a>
+                    <a href="/loginAdministracion">Administración</a>
+                </nav>
+            </div>
+        </div>
+        <!-- fin header -->
+
+        <!-- contenido pagina -->
+        <!-- Contenedor de fondo oscuro -->
+        <div class="contenedor-oscuro">
+
+            <h2 class="titulo-ivt">Conoce a los formadores de New Millenium</h2>
+
+            <!-- Contenedor para la informacion del facilitador -->
+            <div th:if="${facilitadoresActivos != null and !facilitadoresActivos.empty}">
+                <div th:each="facilitador : ${facilitadoresActivos}" class="formato-facilitador">
+                    <div class="facilitador">
+                        <img src="../img/facilitador.jpg" alt="facilitador_imagen" />
+                        <div class="desc-facilitador">
+                            <h4 th:text="${facilitador.nombreFacilitador}">Giselle Prado</h4>
+                            <p class="texto-estudio" th:text="${facilitador.estudio}">Ingeniera en sistemas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${facilitadoresActivos == null or facilitadoresActivos.empty}">
+                No hay facilitadores disponibles.
+            </div>
+        </div>
+        <!-- fin contenido pagina -->
+
+        <!-- footer -->
+        <footer>
+            <div class="contenedor">
+                <div class="nosotros">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Ofrecemos las mejores soluciones IT.</p>
+                    <p>Con amplia experiencia en el mercado, desde 1999</p>
+                </div>
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li><a href="/index">Calendario</a></li>
+                            <li><a href="/categorias">Categorías</a></li>
+                            <li><a href="/facilitadores">Facilitadores</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="copyright">Todo los derechos reservados &copy;</p>
+        </footer>
+        <!-- fin footer -->
+    </body>
+</html>

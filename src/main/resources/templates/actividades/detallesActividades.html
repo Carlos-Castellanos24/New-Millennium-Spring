@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+
+        <div id="viewport">
+
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+
+                <div class="container-fluid">
+                    <h4 class="text-center">Detalles acerca de la actividad</h4>
+                    <hr />
+                    <div class="cont-detalles">
+                        <p><b th:text="'Identificador de la actividad:' + ' ' + ${idActividad}">Identificador de la actividad: </b></p>
+                        <p><b th:text="'Categoria:' + ' ' + ${nombreCategoria}">Categoría:</b> - <b th:text="'Identificador de la Categoría:' + ' ' + ${idCategoria}">Identificador de la Categoría:</b></p>
+                        <p><b th:text="'Facilitador:' + ' ' + ${nombreFacilitador}">Facilitador:</b> - <b th:text="'Identificador del Facilitador:' + ' ' + ${idFacilitador}">Identificador del Facilitador:</b></p>
+                        <p><b th:text="'Actividad:' + ' ' + ${nombreActividad}">Actividad:</b></p>
+                        <p><b th:text="'Fecha de inicio:' + ' ' + ${fechaInicio}">Fecha de inicio:</b></p>
+                        <p><b th:text="'Fecha a culminar:' + ' ' + ${fechaFinal}">Fecha a culminar:</b></p>
+                        <p><b th:text="'Días a impartir:' + ' ' + ${diasSemana}">Días a impartir:</b></p>
+                        <p><b th:text="'Horario:' + ' ' + ${horario}">Horario:</b></p>
+                        <p><b th:text="'Descripción:' + ' ' + ${descripcion}">Descripción:</b></p>  
+                        <th:block th:switch="${estadoActividad}">
+                            <p th:case="'A'">
+                                <b th:text="'Estado de la actividad:' + ' ' + 'Activo'"></b>
+                            </p>
+                            <p th:case="'I'">
+                                <b th:text="'Estado de la actividad:' + ' ' + 'Inactivo'"></b>
+                            </p>
+                        </th:block>
+
+                        <p class="cont-aditoria"><b>Agregado por:</b> Puede ver el registro en la bitacora, busquelo bajo el nombre: <b th:text="${nombreActividad}"></b></p>
+                        <p><b>Actualizado por:</b> Puede ver el registro en la bitacora, busquelo bajo el nombre: <b th:text="${nombreActividad}">${actividad.nombreActividad}</b></p>
+                    </div>
+
+                    <div class="text-center btn-details">
+                        <a href="/listarActividades">Volver a listar todas las actividades</a>
+                    </div>
+                </div> <!--  fin contenido pantalla -->
+            </div> <!-- fin content -->
+        </div>
+    </body>
+</html>

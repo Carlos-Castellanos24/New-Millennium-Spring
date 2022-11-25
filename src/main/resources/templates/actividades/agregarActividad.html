@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+                <div class="container-fluid">
+                    <form th:action="@{/guardarActividad}" th:object="${actividad}" method="post" class="was-validated">                       
+                        <div class="form-horizontal">
+                            <h4 class="text-center">Añadir actividad</h4>
+                            <hr /> 
+                            <div class="form-group">
+                                <label for="categoria" class="control-label col-md-2">Categoría: </label>
+                                <div class="col-md-4">
+                                    <select name="categoria" id="categoria" class="form-control" required>
+                                        <th:block th:each="categoria : ${categoriasActivas}">
+                                            <option th:text="${categoria.nombreCategoria}" th:value="${categoria.idCategoria}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+
+                                <label for="facilitador" class="control-label col-md-2">Facilitadores: </label>
+                                <div class="col-md-3">
+                                    <select name="facilitador" id="facilitador" class="form-control" required>
+                                        <th:block th:each="facilitador : ${facilitadoresActivos}">
+                                            <option th:text="${facilitador.nombreFacilitador}" th:value="${facilitador.idFacilitador}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nombreActividad" class="control-label col-md-2">Nombre de la Actividad: </label>
+                                <div class="col-md-9">
+                                    <input type="text" name="nombreActividad" class="form-control" max="45" placeholder="Escriba el nombre de la actividad"
+                                           onkeypress="validarActividad(this,'Nombre actividad', 'alerta_nombre', 5)" required>
+                                    <p class="campos_alerta" id="alerta_nombre"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fechaInicio" class="control-label col-md-2">Inicio: </label>
+                                <div class="col-md-2">
+                                    <input type="date" name="fechaInicio" class="form-control" required>
+                                    <p class="campos_alerta" id="alerta_fecha_inicio"></p>    
+                                </div>
+
+                                <label for="fechaFinal" class="control-label col-md-1">Fin: </label>
+                                <div class="col-md-2">
+                                    <input type="date" name="fechaFinal" class="form-control" required>
+                                    <p class="campos_alerta" id="alerta_fecha_final"></p>
+                                </div>
+
+                                <label for="diasSemana" class="control-label col-md-1">Días: </label>
+                                <div class="col-md-3">
+                                    <input type="text" name="diasSemana" class="form-control" placeholder = "Lunes - Miercoles" minlength="5"
+                                           onkeypress="validarActividad(this,'Dias', 'alerta_dias', 10)">
+                                    <p class="campos_alerta" id="alerta_dias"></p>   
+                                </div>
+                            </div>                          
+
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="horasDias" class="control-label col-md-2">Horario: </label>
+                                    <div class="col-md-2">
+                                        <input type="text" name="horasDias" class="form-control" placeholder = "00:00 - 00:00"
+                                               onkeypress="validarActividad(this,'Horas', 'alerta_horas', 10)" required>
+                                        <p class="campos_alerta" id="alerta_horas" ></p>     
+                                    </div>
+                                    <label for="descripcion" class="control-label col-md-1">Descripción: </label>
+                                    <div class="col-md-6 config-textarea">
+                                        <textarea name="descripcion" id="descripcion" class="form-control" onkeypress="validarActividad(this, 'Descripcion', 'alerta_descripcion', 10)" required></textarea>
+                                        <p class="campos_alerta" id="alerta_descripcion"></p>
+                                    </div>
+                                </div>
+
+                                <label for="estadoActividad" class="control-label col-md-2">Estado: </label>
+                                <div class="col-md-2 config-select">
+                                    <select name="estadoActividad" id="estadoActividad" class="form-control" required style="width: 100%;">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="tipoRegistro" value="I">
+                            <input type="hidden" name="accion" value="inserto">
+                            <input type="hidden" name="nombreTabla" value="actividad">    
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10 text-right">
+                                    <input type="submit" value="Añadir nueva actividad" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center btn-details">
+                        <a href="/listarActividades">Volver a listar todas las actividades</a>
+                    </div>
+                </div> <!--  fin contenido pantalla -->
+            </div> <!-- fin content -->
+        </div>
+    </body>
+</html>
+

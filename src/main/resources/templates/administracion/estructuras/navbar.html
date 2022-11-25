@@ -1,0 +1,12 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a>
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i> <b th:text="${nombreAdministrador} + ' ' + ${apellidoAdministrador}"></b>  -  <i class="fa fa-envelope-o" aria-hidden="true"></i> <b th:text="${correoAdministrador}"></b>
+                </a>
+            </li>
+            <li class="cerrar-usuario"><a href="/cerrarSesion"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+        </ul>
+    </div>
+</nav>

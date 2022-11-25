@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Hola - MillenniumCalendar</title>
+
+        <!-- Estilos personalizados -->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <!-- header -->
+        <div class="barra">
+            <div class="contenedor clearfix">
+                <div class="logo">
+                    <a href="/index">
+                        <img src="../img/new-millenium-logo.png" alt="new-millenium-logo" />
+                    </a>
+                </div>
+                <nav class="navegacion-principal">
+                    <a href="/index">Calendario</a>
+                    <a href="/categorias">Categorías</a>
+                    <a href="/facilitadores">Facilitadores</a>
+                    <a href="/loginAdministracion">Administración</a>
+                </nav>
+            </div>
+        </div>
+        <!-- fin header -->
+
+        <!-- contenido pagina -->
+        <h2 class="titulo">Calendarización de actividades para que estés informado de New Millenium</h2>
+        <hr class="separador" />
+
+        <!-- contenedor para curso -->
+        <div th:if="${actividadesActivas != null and !actividadesActivas.empty}">
+            <div th:each="actividadActiva : ${actividadesActivas}" class="curso">
+                <article class="imagen-categoria">
+                    <div class="img-curso-contenedor">
+                        <img class="img-curso" src="../img/curso-img.png" />
+                    </div>
+                    <p th:text="'Categoría de la actividad:' + ' ' + ${actividadActiva.categoria.nombreCategoria}" class="categoria texto-categoria">Categoría de la actividad:</p>
+                </article>
+
+                <article class="informacion-general">
+                    <p th:text="${actividadActiva.nombreActividad}" class="nombre-actividad"></p>
+
+                    <div class="informacion-facilitador">
+                        <div class="img-facilitador-contenedor">
+                            <img class="img-facilitador" src="../img/persona.png" /><span class="nombre-facilitador"><span th:text="${actividadActiva.facilitador.nombreFacilitador}" class="formt-facilitador"></span></span>
+                        </div>
+                        
+                        <div class="formato-texto">
+                            
+                            <p th:text="'Fecha de inicio:' + ' ' +  ${#calendars.format(actividadActiva.fechaInicio ,'EEEE, d MMMM yyyy')}">Fecha de inicio: 00/00/0000</p>
+                            <p th:text="'Fecha a finalizar:' + ' ' + ${#calendars.format(actividadActiva.fechaFinal ,'EEEE, d MMMM yyyy')}">Fecha a finalizar: 00/00/0000</p>
+                            <p th:text="'Días:' + ' ' + ${actividadActiva.diasSemana}">Días: Lunes - Viernes<span th:text="'Horario:' + ' ' + ${actividadActiva.horasDias}" class="duracion-actividad">Horario: 7:00 - 11:00</span></p>
+                            <p th:text="'Descripción:' + ' ' + ${actividadActiva.descripcion}">Descripción: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div th:if="${actividadesActivas == null or actividadesActivas.empty}">
+            No hay actividades para mostrar.
+        </div>
+        <!-- fin contenido pagina -->
+
+        <!-- footer -->
+        <footer>
+            <div class="contenedor">
+                <div class="nosotros">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Ofrecemos las mejores soluciones IT.</p>
+                    <p>Con amplia experiencia en el mercado, desde 1999</p>
+                </div>
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li><a href="/index">Calendario</a></li>
+                            <li><a href="/categorias">Categorías</a></li>
+                            <li><a href="/facilitadores">Facilitadores</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="copyright">Todo los derechos reservados &copy;</p>
+        </footer>
+        <!-- fin footer -->
+    </body>
+</html>

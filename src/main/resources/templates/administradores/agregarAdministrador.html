@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+                <div class="container-fluid">
+                    <form th:action="@{/guardarAdministrador}" th:object="${administrador}" method="post" class="was-validated">
+                        <div class="form-horizontal">
+                            <h4 class="text-center">Añadir administrador</h4>
+                            <hr />                           
+                            <div class="form-group">
+                                <label for="nombreAdministrador" class="control-label col-md-2">Nombre del Administrador: </label>
+                                <div class="col-md-9">
+                                    <input type="text" name="nombreAdministrador" class="form-control" minlength="5" maxlength="30" placeholder="Escriba el nombre del administrador" onkeypress="validarAdministrador(this, 'Nombre Administrador', 'alerta_nombre', 5)" required>
+                                    <p class="campos_alerta" id="alerta_nombre"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">                        
+                                <label for="apellidoAdministrador" class="control-label col-md-2">Apellido del Administrador: </label>
+                                <div class="col-md-9">
+                                    <input type="text" name="apellidoAdministrador" class="form-control" placeholder = "Escriba el apellido del administrador" minlength="5" onkeypress="validarAdministrador(this, 'Apellido Administrador', 'alerta_apellido', 5)" required>
+                                        <p class="campos_alerta" id="alerta_apellido"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">                        
+                                <label for="correo" class="control-label col-md-2">Correo: </label>
+                                <div class="col-md-9">
+                                    <input type="email" name="correo" class="form-control" placeholder = "Escriba su correo" minlength="5" onkeypress="validarCorreo()" required>
+                                        <p class="campos_alerta" id="alertaCorreo"></p>
+                                </div>
+                            </div>
+                            <div class="form-group">                        
+                                <label for="password" class="control-label col-md-2">Contraseña: </label>
+                                <div class="col-md-3">
+                                    <input type="password" name="clave" id="password_admin" class="form-control" placeholder = "Escriba una contraseña" required>
+                                </div>
+                                <label for="password2" class="control-label col-md-2">Repetir contraseña: </label>
+                                <div class="col-md-4">
+                                    <input type="password" id="password_admin_rep" class="form-control" placeholder = "Repetir contraseña" onkeyup="validarcontrasenia()" required> 
+                                    <p class="campos_alerta" id="alertacontrasenia"></p>                               
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="estadoAdministrador" class="control-label col-md-2">Estado: </label>
+                                <div class="col-md-2 config-select">
+                                    <select name="estadoAdministrador" id="estadoAdministrador" class="form-control" required style="width: 100%;">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" name="tipoRegistro" value="I">
+                            <input type="hidden" name="accion" value="inserto">
+                            <input type="hidden" name="nombreTabla" value="administrador">    
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10 text-right">
+                                    <input type="submit" id="envio" value="Añadir nuevo administrador" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center btn-details">
+                        <a href="/listarAdministradores">Volver a listar todos los administradores</a>
+                    </div>
+                </div> <!--  fin contenido pantalla -->
+            </div> <!-- fin content -->
+        </div>
+    </body>
+</html>
+
+

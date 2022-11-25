@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Administración - MillenniumCalendar</title>
+        <!-- Estilos personalizados -->
+        <link href="../css/styles_administracion.css" rel="stylesheet" />
+
+        <!-- Estilos externos -->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css' />
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css' />
+
+        <!-- Kits de iconos -->
+        <script src="https://kit.fontawesome.com/d21a3be417.js"></script>
+    </head>
+    <body>
+
+        <div id="viewport">
+            <!-- Sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- ./Sidebar -->
+            <!-- content -->
+            <div id="content">
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <div class="container-fluid">
+                    <!-- Contenido pantalla -->
+                    <!-- Contenedor para el administrador -->
+                    <div class="contenido-administrador">
+                        <!-- Mensaje de bienvenida -->
+
+                        <h1 th:text="'¡Hola' + ' ' + ${nombreAdministrador} + '!'">¡Hola Melissa!</h1>
+                        <p>Administra los datos para el calendario de New Millennium</p>
+
+                        <!-- Contenedor para las cajas de enlaces -->
+                        <div class="inicio-items">
+                            <!-- Caja de enlace para usuarios -->
+                            <div class="inicio-item item-1">
+                                <a href="/listarAdministradores" class="enlace-item">
+                                    <div class="icono-item"><i class="fas fa-user-shield"></i></div>
+                                    <div class="texto-item">Usuarios</div>
+                                </a>
+                            </div>
+
+                            <!-- Caja de enlace para actividades -->
+                            <div class="inicio-item item-2">
+                                <a href="/listarActividades" class="enlace-item">
+                                    <div class="icono-item"><i class="fas fa-paperclip"></i></div>
+                                    <div class="texto-item">Actividades</div>
+                                </a>
+                            </div>
+
+                            <!-- Caja de enlace para categorias -->
+                            <div class="inicio-item item-3">
+                                <a href="/listarCategorias" class="enlace-item">
+                                    <div class="icono-item"><i class="fas fa-cogs"></i></div>
+                                    <div class="texto-item">Categorías</div>
+                                </a>
+                            </div>
+
+                            <!-- Caja de enlace para facilitadores -->
+                            <div class="inicio-item item-4">
+                                <a href="/listarFacilitadores" class="enlace-item">
+                                    <div class="icono-item"><i class="fas fa-chalkboard-teacher"></i></div>
+                                    <div class="texto-item">Facilitadores</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /.contenido pantalla -->
+                </div>
+            </div>
+            <!-- ./content -->
+        </div>
+    </body>
+</html>

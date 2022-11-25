@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Hola - MillenniumCalendar</title>
+
+        <!-- Estilos personalizados -->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <!-- header -->
+        <div th:replace="/administracion/estructuras/header :: div"></div>
+        <!-- fin header -->
+
+        <!-- contenido pagina -->
+        <div class="contenedor-oscuro">
+
+            <!-- Contenedor para el Log in -->
+            <form th:action="@{/validarLogin}" method="post">
+                <div class="login">
+                    <!-- Contenedor para el input de email y la alerta si lo requiere -->
+                    <div class="login-item">
+                        <input type="email" name="correo" class="form-control txt-login" placeholder="correo electrónico" required>
+                    </div>
+
+                    <!-- Contenedor para el input de contraseña con TextMode="Password" y la alerta si lo requiere -->
+                    <div class="login-item">
+                        <input type="password" name="clave" class="form-control txt-login" placeholder = "contraseña" required>
+                    </div>
+
+                    <!-- Contenedor para el botor para iniciar sesión con el evento OnClick -->
+                    <div class="login-item">
+                        <input type="submit" value="Iniciar sesión" class="btn-login" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- fin contenido pagina -->
+
+        <!-- footer -->
+        <footer th:replace="/administracion/estructuras/footer :: footer"></footer>
+        <!-- fin footer -->
+    </body>
+</html>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+
+            <!-- Sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- ./Sidebar -->
+            <!-- content -->
+            <div id="content">
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <div th:if="${administradores != null and !administradores.empty}" class="container-fluid">
+                    <!-- Contenido pantalla -->
+                    <p class="cont-btn-add">
+                        <a th:href="@{/agregarAdministrador}" class="btn-add">Añadir administrador</a><br />
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Id Administrador</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Estado</th>
+                            <th>Accion</th>
+                        </tr>
+                        <tr th:each="administrador : ${administradores}">
+                            <td th:text="${administrador.idAdministrador}"></td>
+                            <td th:text="${administrador.nombreAdministrador}"></td>
+                            <td th:text="${administrador.apellidoAdministrador}"></td>
+                            <th:block th:switch="${administrador.estadoAdministrador}"> 
+                                <div th:case="'A'">
+                                   <td th:text="Activo">
+                                </div>
+                                <div th:case="'I'">
+                                    <td th:text="Inactivo"></td>
+                                </div>
+                            </th:block>
+                            <td class="config-controles">
+                                <a th:href="@{/editarAdministrador/} + ${administrador.idAdministrador}"><i class="fas fa-edit"></i> Editar</a> <br />
+                                <a href="#"><i class="fas fa-plus-circle"></i> Detalles</a> <br />
+                                <a th:href="@{/eliminarAdministrador/} + ${administrador.idAdministrador}"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- /.contenido pantalla -->
+                </div>
+            </div>
+            <!-- ./content -->
+        </div>
+    </body>
+</html>
+
+

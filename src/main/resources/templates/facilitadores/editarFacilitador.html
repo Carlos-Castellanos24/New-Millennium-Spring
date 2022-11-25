@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+                <div class="container-fluid">
+                    <form th:action="@{/editarCambiosFacilitador}" th:object="${facilitador}" method="post" class="was-validated">
+                        <div class="form-horizontal">
+                            <h4 class="text-center">Editar facilitador</h4>
+                            <hr />    
+                            <input type="hidden" name="idFacilitador" th:field="*{idFacilitador}">
+                            <div class="form-group">
+                                <label for="nombreFacilitador" class="control-label col-md-2">Nombre del Facilitador: </label>
+                                <div class="col-md-7">
+                                    <input type="text" name="nombreFacilitador" th:field="*{nombreFacilitador}" class="form-control" placeholder="Escriba el nombre del facilitador" onkeypress="validarFacilitador(this, 'Nombre Facilitador', 'alerta_nombre', 10)" required>
+                                    <p class="campos_alerta" id="alerta_nombre"></p>                                
+                                </div>
+                            </div>
+
+                            <div class="form-group">                        
+                                <label for="estudio" class="control-label col-md-2">Estudio: </label>
+                                <div class="col-md-7">
+                                    <input type="text" name="estudio" th:field="*{estudio}" class="form-control" placeholder = "Escriba los estudios realizados" onkeypress="validarFacilitador(this, 'Estudio Facilitador', 'alerta_estudio', 20)" required>
+                                    <p class="campos_alerta" id="alerta_estudio"></p>                                
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estadoFacilitador" class="control-label col-md-2">Estado: </label>
+                                <div class="col-md-2 config-select">
+                                    <select name="estadoFacilitador" th:field="*{estadoFacilitador}" id="estadoFacilitador" class="form-control" required style="width: 100%;">
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" name="tipoRegistro" value="U">
+                            <input type="hidden" name="accion" value="edito">
+                            <input type="hidden" name="nombreTabla" value="facilitador">    
+                            
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10 text-right">
+                                    <input type="submit" value="Editar facilitador" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center btn-details">
+                        <a href="/listarFacilitadores">Volver a listar todas los facilitadores</a>
+                    </div>
+                </div> <!--  fin contenido pantalla -->
+            </div> <!-- fin content -->
+        </div>
+    </body>
+</html>
+
+

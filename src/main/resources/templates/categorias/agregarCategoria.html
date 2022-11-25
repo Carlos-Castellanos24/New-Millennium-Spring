@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+            <!-- sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- fin sidebar -->
+            <!-- content -->
+            <div id="content">
+                <!-- nav -->
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <!-- fin nav -->
+                <div class="container-fluid">
+                    <form th:action="@{/guardarCategoria}" th:object="${categoria}" method="post" class="was-validated">
+                        <div class="form-horizontal">
+                            <h4 class="text-center">Añadir categoria</h4>
+                            <hr />                           
+                            <div class="form-group">
+                                <label for="nombreCategoria" class="control-label col-md-2">Nombre del Categoria: </label>
+                                <div class="col-md-7">
+                                    <input type="text" name="nombreCategoria" class="form-control" minlength="5" onkeypress="validarCategoria(this, 'Nombre categoria', 'alerta_nombre', 10)" required>
+                                    <p class="campos_alerta" id="alerta_nombre"></p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">                        
+                                <label for="descripcion" class="control-label col-md-2">Descripcion: </label>
+                                <div class="col-md-7">
+                                    <textarea name="descripcion" class="form-control" onkeypress="validarCategoria(this, 'Descripcion categoria', 'alerta_descrip', 15)" required> </textarea>
+                                    <p class="campos_alerta" id="alerta_descrip"></p>                                
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estadoCategoria" class="control-label col-md-2">Estado: </label>
+                                <div class="col-md-2 config-select">
+                                    <select name="estadoCategoria" id="estadoCategoria" class="form-control" style="width: 100%;" required >
+                                        <option value="A">Activo</option>
+                                        <option value="I">Inactivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" name="tipoRegistro" value="I">
+                            <input type="hidden" name="accion" value="inserto">
+                            <input type="hidden" name="nombreTabla" value="categoria">   
+                            
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10 text-right">
+                                    <input type="submit" id="envio" value="Añadir nueva categoria" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="text-center btn-details">
+                        <a href="/listarCategorias">Volver a listar todas las categorias</a>
+                    </div>
+                </div> <!--  fin contenido pantalla -->
+            </div> <!-- fin content -->
+        </div>
+    </body>
+</html>
+

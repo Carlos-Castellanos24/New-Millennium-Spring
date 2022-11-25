@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/administracion/estructuras/meta_admin :: head"></head>
+    <body>
+        <div id="viewport">
+
+            <!-- Sidebar -->
+            <div th:replace="/administracion/estructuras/sidebar :: div"></div>
+            <!-- ./Sidebar -->
+            <!-- content -->
+            <div id="content">
+                <nav th:replace="/administracion/estructuras/navbar :: nav"></nav>
+                <div th:if="${actividades != null and !actividades.empty}" class="container-fluid">
+                    <!-- Contenido pantalla -->
+                    <p class="cont-btn-add">
+                        <a th:href="@{/agregarActividad}" class="btn-add">Añadir actividad</a><br />
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Id Actividad</th>
+                            <th>Categoria</th>
+                            <th>Facilitador</th>
+                            <th>Nombre</th>
+                            <th>Fecha Inicio</th>
+                            <th>Fecha Final</th>
+                            <th>Dias Semana</th>
+                            <th>Horas al Dia</th>
+                            <th>Estado</th>
+                            <th>Accion</th>
+                        </tr>
+                        <tr th:each="actividad : ${actividades}">
+                            <td th:text="${actividad.idActividad}"></td>
+                            <td th:text="${actividad.categoria.nombreCategoria}"></td>
+                            <td th:text="${actividad.facilitador.nombreFacilitador}"></td>
+                            <td th:text="${actividad.nombreActividad}"></td>
+                            <td th:text="${#calendars.format(actividad.fechaInicio ,'dd-MM-yyyy')}"></td>
+                            <td th:text="${#calendars.format(actividad.fechaFinal ,'dd-MM-yyyy')}"></td>
+                            <td th:text="${actividad.diasSemana}"></td>
+                            <td th:text="${actividad.horasDias}"></td>
+                            <th:block th:switch="${actividad.estadoActividad}"> 
+                                <div th:case="'A'">
+                                    <td th:text="Activo">
+                                </div>
+                                <div th:case="'I'">
+                                    <td th:text="Inactivo"></td>
+                                </div>
+                            </th:block>
+                            <td class="config-controles">
+                                <a th:href="@{/editarActividad/} + ${actividad.idActividad}"><i class="fas fa-edit"></i> Editar</a> <br />
+                                <a th:href="@{/detallesActividad/} + ${actividad.idActividad}"><i class="fas fa-plus-circle"></i> Detalles</a> <br />
+                                <a th:href="@{/eliminarActividad/} + ${actividad.idActividad}"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <!-- /.contenido pantalla -->
+                </div>
+            </div>
+            <!-- ./content -->
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>Hola - MillenniumCalendar</title>
+
+        <!-- Estilos personalizados -->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body>
+
+        <!-- header -->
+        <div class="barra">
+            <div class="contenedor clearfix">
+                <div class="logo">
+                    <a href="/index">
+                        <img src="../img/new-millenium-logo.png" alt="new-millenium-logo" />
+                    </a>
+                </div>
+                <nav class="navegacion-principal">
+                    <a href="/index">Calendario</a>
+                    <a href="/categorias">Categorías</a>
+                    <a href="/facilitadores">Facilitadores</a>
+                    <a href="/loginAdministracion">Administración</a>
+                </nav>
+            </div>
+        </div>
+        <!-- fin header -->
+
+        <!-- contenido pagina -->
+        <h2 class="titulo">Nuestras Categorías</h2>
+        <hr class="separador" />
+
+        <!-- Contenedor para categorias -->
+        <div class="contenedor-categoria">
+            <!-- Contenedor para una categoria -->
+            <div th:if="${categoriasActivas != null and !categoriasActivas.empty}">
+                <div th:each="categoriaActiva : ${categoriasActivas}" class="categorias">
+                    <div class="centrar-imagen">
+                        <img src="../img/categoria.jpg" alt="imagen_categoria" />
+                    </div>
+
+                    <h3 th:text="${categoriaActiva.nombreCategoria}">Desarrollo web</h3>
+                    <p class="texto-descripcion" th:text="${categoriaActiva.descripcion}">Creación de sitios web para Internet o una red local</p>
+                </div>
+            </div>
+            <div th:if="${categoriasActivas == null or categoriasActivas.empty}">
+                No hay categorias disponibles.
+            </div>
+        </div>
+        <!-- fin contenido pagina -->
+
+        <!-- footer -->
+        <footer>
+            <div class="contenedor">
+                <div class="nosotros">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Ofrecemos las mejores soluciones IT.</p>
+                    <p>Con amplia experiencia en el mercado, desde 1999</p>
+                </div>
+                <div class="menu">
+                    <nav>
+                        <ul>
+                            <li><a href="/index">Calendario</a></li>
+                            <li><a href="/categorias">Categorías</a></li>
+                            <li><a href="/facilitadores">Facilitadores</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <p class="copyright">Todo los derechos reservados &copy;</p>
+        </footer>
+        <!-- fin footer -->
+    </body>
+</html>
